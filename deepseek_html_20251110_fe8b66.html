@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🎀 Αποχαιρετιστήρια Κάρτα</title>
+  <!-- Favicon με φάκελο -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ffd700' d='M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V6h5.17l2 2H20v10z'/></svg>">
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      background-attachment: fixed;
+      color: white;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      animation: gradient 15s ease infinite;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Κύριο container που περιορίζεται στο 100% viewport */
+    .main-container {
+      width: 100vw;
+      height: 100vh;
+      height: -webkit-fill-available;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Περίτεχνο Περίγραμμα */
+    .card-container {
+      position: relative;
+      padding: 15px;
+      background: linear-gradient(45deg, 
+        rgba(255, 215, 0, 0.3), 
+        rgba(255, 140, 0, 0.3), 
+        rgba(255, 69, 0, 0.3), 
+        rgba(255, 215, 0, 0.3));
+      border-radius: 20px;
+      animation: borderGlow 4s ease-in-out infinite;
+      box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
+      max-width: 98vw;
+      max-height: 98vh;
+      width: 100%;
+      height: auto;
+      min-height: auto;
+    }
+    
+    @keyframes borderGlow {
+      0%, 100% {
+        box-shadow: 
+          0 0 30px rgba(255, 215, 0, 0.5),
+          inset 0 0 30px rgba(255, 255, 255, 0.1);
+      }
+      50% {
+        box-shadow: 
+          0 0 50px rgba(255, 215, 0, 0.8),
+          0 0 80px rgba(255, 140, 0, 0.4),
+          inset 0 0 40px rgba(255, 255, 255, 0.2);
+      }
+    }
+    
+    /* Κοσμήματα γωνιών - Μικρότερα για κινητά */
+    .corner-decoration {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #ffd700;
+      opacity: 0.7;
+      animation: cornerRotate 8s linear infinite;
+    }
+    
+    .corner-top-left {
+      top: 3px;
+      left: 3px;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 12px 0 0 0;
+    }
+    
+    .corner-top-right {
+      top: 3px;
+      right: 3px;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0 12px 0 0;
+    }
+    
+    .corner-bottom-left {
+      bottom: 3px;
+      left: 3px;
+      border-right: none;
+      border-top: none;
+      border-radius: 0 0 0 12px;
+    }
+    
+    .corner-bottom-right {
+      bottom: 3px;
+      right: 3px;
+      border-left: none;
+      border-top: none;
+      border-radius: 0 0 12px 0;
+    }
+    
+    @keyframes cornerRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Μικρά διαμάντια στις γωνίες */
+    .diamond {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #ffd700;
+      transform: rotate(45deg);
+      animation: diamondSparkle 3s ease-in-out infinite;
+    }
+    
+    .diamond:nth-child(1) { top: 10px; left: 10px; animation-delay: 0s; }
+    .diamond:nth-child(2) { top: 10px; right: 10px; animation-delay: 0.5s; }
+    .diamond:nth-child(3) { bottom: 10px; left: 10px; animation-delay: 1s; }
+    .diamond:nth-child(4) { bottom: 10px; right: 10px; animation-delay: 1.5s; }
+    
+    @keyframes diamondSparkle {
+      0%, 100% { 
+        opacity: 0.5; 
+        box-shadow: 0 0 5px #ffd700;
+      }
+      50% { 
+        opacity: 1; 
+        box-shadow: 0 0 15px #ffd700, 0 0 20px #ffa500;
+      }
+    }
+    
+    /* Σημεία κατά μήκος του περιγράμματος - Λιγότερα για κινητά */
+    .border-dot {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #ffd700;
+      border-radius: 50%;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    
+    /* Λιγότερα dots για κινητά */
+    .border-dot:nth-child(5) { top: 5px; left: 25%; animation-delay: 0s; }
+    .border-dot:nth-child(6) { top: 5px; left: 50%; animation-delay: 0.3s; }
+    .border-dot:nth-child(7) { top: 5px; left: 75%; animation-delay: 0.6s; }
+    
+    .border-dot:nth-child(8) { bottom: 5px; left: 25%; animation-delay: 0.1s; }
+    .border-dot:nth-child(9) { bottom: 5px; left: 50%; animation-delay: 0.4s; }
+    .border-dot:nth-child(10) { bottom: 5px; left: 75%; animation-delay: 0.7s; }
+    
+    .border-dot:nth-child(11) { left: 5px; top: 33%; animation-delay: 0.2s; }
+    .border-dot:nth-child(12) { left: 5px; top: 66%; animation-delay: 0.5s; }
+    
+    .border-dot:nth-child(13) { right: 5px; top: 33%; animation-delay: 0.3s; }
+    .border-dot:nth-child(14) { right: 5px; top: 66%; animation-delay: 0.6s; }
+    
+    @keyframes dotPulse {
+      0%, 100% { 
+        transform: scale(1);
+        opacity: 0.6;
+        box-shadow: 0 0 5px #ffd700;
+      }
+      50% { 
+        transform: scale(1.3);
+        opacity: 1;
+        box-shadow: 0 0 10px #ffd700, 0 0 15px #ffa500;
+      }
+    }
+
+    /* Κύριο περιεχόμενο κάρτας - Βελτιστοποιημένο για κινητά */
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px 15px;
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      z-index: 100;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Βελτιστοποιημένο responsive typography για κινητά */
+    h1 {
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    
+    .names {
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      font-weight: bold;
+      margin: 20px 0;
+      color: #ffeb3b;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      line-height: 1.3;
+    }
+    
+    .message {
+      font-size: clamp(0.9rem, 4vw, 1.2rem);
+      line-height: 1.5;
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .hearts {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin: 15px 0;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .hearts span {
+      display: inline-block;
+      animation: heartBeat 2s ease-in-out infinite;
+    }
+    
+    .hearts span:nth-child(1) { animation-delay: 0s; }
+    .hearts span:nth-child(2) { animation-delay: 0.4s; }
+    .hearts span:nth-child(3) { animation-delay: 0.8s; }
+    .hearts span:nth-child(4) { animation-delay: 1.2s; }
+    
+    @keyframes heartBeat {
+      0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+      }
+      25% {
+        transform: scale(1.15);
+        filter: brightness(1.3);
+      }
+      50% {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+      75% {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+      }
+    }
+    
+    .signature {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      line-height: 1.4;
+    }
+    
+    .volume-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    
+    input[type="range"] {
+      width: clamp(100px, 40vw, 150px);
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffeb3b;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+    }
+    
+    button {
+      margin-top: 15px;
+      padding: clamp(10px, 4vw, 12px) clamp(15px, 5vw, 25px);
+      font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #ffeb3b, #ff9800);
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      font-weight: bold;
+      position: relative;
+      z-index: 200;
+      min-height: 44px; /* Minimum touch target size */
+    }
+    
+    button:hover { 
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    
+    button.playing {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+    }
+
+    /* Σερπαντίνες - Βελτιστοποιημένες για κινητά */
+    .confetti {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .confetti.front {
+      z-index: 150;
+      opacity: 1;
+    }
+
+    .confetti.back {
+      z-index: 50;
+      opacity: 0.3;
+      filter: blur(1px);
+    }
+
+    .confetti.circle {
+      border-radius: 50%;
+      animation: confettiFall 4s ease-in forwards;
+    }
+
+    .confetti.square {
+      animation: confettiFall 3.5s ease-in forwards;
+    }
+
+    .confetti.triangle {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 8px solid;
+      background: transparent !important;
+      animation: confettiFall 4.5s ease-in forwards;
+    }
+
+    .confetti.diamond {
+      transform: rotate(45deg);
+      animation: confettiFall 3.8s ease-in forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        opacity: 1;
+        transform: 
+          translateY(-100px) 
+          translateX(0px) 
+          rotate(0deg) 
+          scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: 
+          translateY(100vh) 
+          translateX(var(--random-x, 0px)) 
+          rotate(1080deg) 
+          scale(0.5);
+      }
+    }
+
+    .confetti.back {
+      animation: confettiFallBack 5s ease-in forwards;
+    }
+
+    @keyframes confettiFallBack {
+      0% {
+        opacity: 0.3;
+        transform: 
+          translateY(-100px) 
+          translateX(0px) 
+          rotate(0deg) 
+          scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: 
+          translateY(100vh) 
+          translateX(var(--random-x, 0px)) 
+          rotate(1080deg) 
+          scale(0.5);
+      }
+    }
+
+    /* iOS Specific Fixes */
+    @supports (-webkit-touch-callout: none) {
+      body {
+        min-height: -webkit-fill-available;
+      }
+      
+      .main-container {
+        height: -webkit-fill-available;
+      }
+    }
+
+    /* Landscape mode optimizations */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .card-container {
+        padding: 10px;
+        max-height: 96vh;
+      }
+      
+      .card {
+        padding: 15px 10px;
+        overflow-y: auto;
+        max-height: 90vh;
+      }
+      
+      h1 {
+        margin-bottom: 10px;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+      
+      .names {
+        margin: 10px 0;
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+      }
+      
+      .message {
+        margin: 10px 0;
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+      }
+      
+      .hearts {
+        margin: 10px 0;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+      }
+      
+      .signature {
+        margin-top: 10px;
+      }
+    }
+
+    /* Very small phones */
+    @media (max-width: 360px) {
+      .card-container {
+        padding: 10px;
+        border-radius: 15px;
+      }
+      
+      .card {
+        padding: 15px 10px;
+        border-radius: 12px;
+      }
+      
+      .corner-decoration {
+        width: 25px;
+        height: 25px;
+      }
+      
+      .diamond {
+        width: 5px;
+        height: 5px;
+      }
+    }
+
+    /* Prevent zoom on input focus for iOS */
+    @media screen and (max-width: 768px) {
+      input[type="range"] {
+        font-size: 16px; /* Prevents zoom on focus */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Περίτεχνο Περίγραμμα -->
+    <div class="card-container">
+      <!-- Κοσμήματα Γωνιών -->
+      <div class="corner-decoration corner-top-left"></div>
+      <div class="corner-decoration corner-top-right"></div>
+      <div class="corner-decoration corner-bottom-left"></div>
+      <div class="corner-decoration corner-bottom-right"></div>
+      
+      <!-- Διαμάντια Γωνιών -->
+      <div class="diamond"></div>
+      <div class="diamond"></div>
+      <div class="diamond"></div>
+      <div class="diamond"></div>
+      
+      <!-- Σημεία Περιγράμματος -->
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      <div class="border-dot"></div>
+      
+      <div class="card">
+        <h1>Αποχαιρετιστήρια Κάρτα</h1>
+
+        <div class="names">Μαρία, Ιωάννα, Χρυσούλα & Ελισάβετ</div>
+
+        <div class="message">
+          Θα ήθελα να σας ευχαριστήσω θερμά για τη συναρπαστική συνεργασία μας. 
+          Ήταν μια υπέροχη εμπειρία να δουλέψω μαζί σας και να μοιραστούμε τόσες 
+          στιγμές δημιουργικότητας και συνεργασίας.<br><br>
+          <strong>Σας εύχομαι τα καλύτερα στην προσωπική και επαγγελματική σας πορεία!</strong>
+        </div>
+
+        <div class="hearts">
+          <span>🧡</span><span>💙</span><span>💛</span><span>💚</span>
+        </div>
+
+        <div class="signature">Με εκτίμηση 🙏<br>Γιώργος</div>
+
+        <div class="volume-control">
+          <span>🔊</span>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+
+        <button id="playButton">Μουσική</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const playButton = document.getElementById('playButton');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const body = document.body;
+
+    const audio = new Audio('https://raw.githubusercontent.com/vezi94/Apoxairetisthria_karta/main/wish-you-were-here-instrumental.mp3');
+    audio.loop = false;
+
+    const confettiColors = [
+      '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
+      '#ff00ff', '#00ffff', '#ff8000', '#8000ff',
+      '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4',
+      '#feca57', '#ff9ff3', '#54a0ff', '#5f27cd'
+    ];
+
+    const confettiTypes = ['circle', 'square', 'triangle', 'diamond'];
+
+    let confettiInterval;
+
+    function createConfetti() {
+      createConfettiLayer('front', 1.0);
+      createConfettiLayer('back', 0.3);
+    }
+
+    function createConfettiLayer(layer, opacity) {
+      const type = confettiTypes[Math.floor(Math.random() * confettiTypes.length)];
+      const confetti = document.createElement('div');
+      confetti.className = `confetti ${type} ${layer}`;
+      
+      let size;
+      switch(type) {
+        case 'circle':
+        case 'square':
+        case 'diamond':
+          size = 6 + Math.random() * 8; // Μικρότερα για κινητά
+          confetti.style.width = size + 'px';
+          confetti.style.height = size + 'px';
+          break;
+        case 'triangle':
+          break;
+      }
+      
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      confetti.style.opacity = opacity;
+      
+      // Χρήση CSS variable για τυχαία πλευρική κίνηση
+      confetti.style.setProperty('--random-x', (Math.random() - 0.5) * 200 + 'px');
+      
+      const fallDuration = layer === 'front' ? 
+        (2 + Math.random() * 2) : // Πιο γρήγορα για κινητά
+        (3 + Math.random() * 2);
+      
+      confetti.style.animationDuration = fallDuration + 's';
+      confetti.style.animationDelay = (Math.random() * 0.3) + 's';
+      
+      body.appendChild(confetti);
+
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.remove();
+        }
+      }, (fallDuration + 0.5) * 1000);
+    }
+
+    function startConfetti() {
+      for (let i = 0; i < 15; i++) { // Λιγότερες σερπαντίνες για απόδοση
+        setTimeout(() => {
+          createConfetti();
+        }, i * 80);
+      }
+      
+      confettiInterval = setInterval(createConfetti, 150); // Πιο αργό interval
+    }
+
+    function stopConfetti() {
+      clearInterval(confettiInterval);
+    }
+
+    function resetButton() {
+      playButton.textContent = 'Μουσική';
+      playButton.classList.remove('playing');
+      playButton.disabled = false;
+    }
+
+    playButton.addEventListener('click', function() {
+      audio.volume = volumeSlider.value;
+      
+      playButton.disabled = true;
+      
+      audio.play().then(() => {
+        playButton.textContent = '😊';
+        playButton.classList.add('playing');
+        startConfetti();
+        
+        audio.onended = function() {
+          stopConfetti();
+          resetButton();
+        };
+        
+      }).catch(error => {
+        console.error('Σφάλμα:', error);
+        playButton.textContent = '⚠️';
+        playButton.style.background = '#ff4081';
+        resetButton();
+      });
+    });
+
+    volumeSlider.addEventListener('input', () => {
+      if (audio) {
+        audio.volume = volumeSlider.value;
+      }
+    });
+
+    // Βελτιστοποίηση για κινητά - σταματάμε animations όταν η καρτέλα δεν είναι ορατή
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        stopConfetti();
+        if (!audio.paused) {
+          audio.pause();
+        }
+      }
+    });
+
+    window.addEventListener('beforeunload', function() {
+      stopConfetti();
+      audio.pause();
+    });
+
+    // Prevent double-tap zoom on mobile
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+  </script>
+</body>
+</html>
