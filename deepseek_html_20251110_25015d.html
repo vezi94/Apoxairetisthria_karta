@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Αποχαιρετιστήρια Κάρτα</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            max-width: 850px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: cardEntrance 1.5s ease-out;
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(100px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            color: #fff;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            position: relative;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff0080; }
+            100% { text-shadow: 0 0 15px #fff, 0 0 30px #ff0080, 0 0 40px #ff0080; }
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffeb3b, transparent);
+            animation: linePulse 2s infinite;
+        }
+        
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .names {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 35px 0;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+            animation: nameFloat 6s ease-in-out infinite;
+            position: relative;
+        }
+        
+        @keyframes nameFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            75% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin: 40px 0;
+            text-align: center;
+            animation: textReveal 2s ease-out;
+            position: relative;
+        }
+        
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .signature {
+            margin-top: 50px;
+            font-style: italic;
+            font-size: 1.3rem;
+            animation: fadeInUp 2s ease-out 1s both;
+            position: relative;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hearts {
+            font-size: 3rem;
+            margin: 30px 0;
+            color: #ff4081;
+            animation: heartBeat 1.5s infinite, float 4s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .hearts span {
+            animation: spin 8s linear infinite;
+        }
+        
+        .hearts span:nth-child(2) {
+            animation-delay: -2s;
+        }
+        
+        .hearts span:nth-child(3) {
+            animation-delay: -4s;
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.3); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            animation: slideUp 1s ease-out 0.7s both;
+        }
+        
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        input[type="range"] {
+            width: 180px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffeb3b;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: floatAround 15s linear infinite;
+        }
+        
+        @keyframes floatAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, -50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(50px, -100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-50px, -50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        .circle {
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+        }
+        
+        .star {
+            width: 0;
+            height: 0;
+            border-right: 10px solid transparent;
+            border-bottom: 7px solid #ffeb3b;
+            border-left: 10px solid transparent;
+            transform: rotate(35deg);
+        }
+        
+        .star:before {
+            border-bottom: 8px solid #ffeb3b;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            position: absolute;
+            height: 0;
+            width: 0;
+            top: -5px;
+            left: -6px;
+            content: '';
+            transform: rotate(-35deg);
+        }
+        
+        .star:after {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-right: 10px solid transparent;
+            border-bottom: 7px solid #ffeb3b;
+            border-left: 10px solid transparent;
+            transform: rotate(-70deg);
+            content: '';
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: #ff0000;
+            opacity: 0.8;
+            animation: confettiFall 5s linear infinite;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .names {
+                font-size: 1.8rem;
+            }
+            
+            .message {
+                font-size: 1.2rem;
+            }
+            
+            .hearts {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="card">
+        <h1>Αποχαιρετιστήρια Κάρτα</h1>
+        
+        <div class="names">Ιωάννα, Χρύσα & Μαρία</div>
+        
+        <div class="message">
+            Θα ήθελα να σας ευχαριστήσω θερμά για τη συναρπαστική συνεργασία μας. 
+            Ήταν μια υπέροχη εμπειρία να δουλέψω μαζί σας και να μοιραστούμε τόσες 
+            στιγμές δημιουργικότητας και συνεργασίας.<br><br>
+            <strong>Σας εύχομαι τα καλύτερα στην προσωπική και επαγγελματική σας πορεία!</strong>
+        </div>
+        
+        <div class="hearts">
+            <span>❤️</span>
+            <span>💛</span>
+            <span>💙</span>
+        </div>
+        
+        <div class="signature">Με εκτίμηση,<br>Ο συνεργάτης σας</div>
+        
+        <div class="volume-control">
+            <span>🔊</span>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://drive.google.com/uc?export=download&id=1gqUiDhraIVopZiuDddxzTgaRgwotzpre" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById('backgroundMusic');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const floatingElements = document.getElementById('floatingElements');
+        
+        // Δημιουργία κινούμενων στοιχείων
+        function createFloatingElements() {
+            const types = ['circle', 'star'];
+            const colors = ['#ff4081', '#4CAF50', '#2196F3', '#FF9800', '#9C27B0'];
+            
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                const type = types[Math.floor(Math.random() * types.length)];
+                const size = Math.random() * 30 + 10;
+                
+                element.className = `floating-element ${type}`;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                element.style.animationDelay = `${Math.random() * 10}s`;
+                element.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                if (type === 'circle') {
+                    element.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]}40, transparent)`;
+                }
+                
+                floatingElements.appendChild(element);
+            }
+            
+            // Δημιουργία confetti
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animationDelay = `${Math.random() * 5}s`;
+                confetti.style.animationDuration = `${3 + Math.random() * 4}s`;
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(confetti);
+            }
+        }
+        
+        // Αυτόματη έναρξη μουσικής
+        window.addEventListener('load', () => {
+            createFloatingElements();
+            
+            setTimeout(() => {
+                audio.play().catch(e => {
+                    console.log('Αυτόματη αναπαραγωγή απέτυχε:', e);
+                });
+            }, 1500);
+        });
+        
+        volumeSlider.addEventListener('input', () => {
+            audio.volume = volumeSlider.value;
+        });
+        
+        // Επιπλέον εφέ με κλικ
+        document.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            const size = Math.random() * 100 + 50;
+            ripple.style.width = `${size}px`;
+            ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - size/2}px`;
+            ripple.style.top = `${e.clientY - size/2}px`;
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+        
+        // Προσθήκη CSS για ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
