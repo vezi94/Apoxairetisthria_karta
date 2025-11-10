@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Αποχαιρετιστήρια Κάρτα</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: gradient 15s ease infinite;
+      flex-direction: column;
+      text-align: center;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      padding: 50px 40px;
+      max-width: 850px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    .names {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 35px 0;
+      color: #ffeb3b;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    }
+    .message {
+      font-size: 1.4rem;
+      line-height: 1.7;
+      margin: 40px 0;
+    }
+    .hearts {
+      font-size: 3rem;
+      margin: 30px 0;
+      color: #ff4081;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .signature {
+      margin-top: 50px;
+      font-style: italic;
+      font-size: 1.3rem;
+    }
+    .volume-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    input[type="range"] {
+      width: 180px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffeb3b;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+    }
+    button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 12px;
+      background: #ffeb3b;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    button:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Αποχαιρετιστήρια Κάρτα</h1>
+
+    <div class="names">Ιωάννα, Χρύσα & Μαρία</div>
+
+    <div class="message">
+      Θα ήθελα να σας ευχαριστήσω θερμά για τη συναρπαστική συνεργασία μας. 
+      Ήταν μια υπέροχη εμπειρία να δουλέψω μαζί σας και να μοιραστούμε τόσες 
+      στιγμές δημιουργικότητας και συνεργασίας.<br><br>
+      <strong>Σας εύχομαι τα καλύτερα στην προσωπική και επαγγελματική σας πορεία!</strong>
+    </div>
+
+    <div class="hearts">
+      <span>❤️</span><span>💛</span><span>💙</span>
+    </div>
+
+    <div class="signature">Με εκτίμηση,<br>Ο συνεργάτης σας</div>
+
+    <div class="volume-control">
+      <span>🔊</span>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
+    <button id="playButton">🎵 Έναρξη μουσικής</button>
+  </div>
+
+  <audio id="backgroundMusic" loop>
+    <!-- Χρησιμοποιώ έναν δωρεάν instrumental τραγούδι που λειτουργεί σίγουρα -->
+    <source src="https://assets.codepen.io/1468070/Spring.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('backgroundMusic');
+    const playButton = document.getElementById('playButton');
+    const volumeSlider = document.getElementById('volumeSlider');
+
+    playButton.addEventListener('click', () => {
+      audio.volume = volumeSlider.value;
+      audio.play().then(() => {
+        playButton.style.display = 'none';
+      }).catch(e => {
+        console.log('Δεν μπόρεσε να ξεκινήσει:', e);
+        alert('Η μουσική δεν μπορεί να αναπαραχθεί. Παρακαλώ ελέγξτε τη σύνδεσή σας.');
+      });
+    });
+
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value;
+    });
+  </script>
+</body>
+</html>
